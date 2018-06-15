@@ -59,12 +59,13 @@ module.exports = function (urls) {
 
 	var delay = 0;
 
-	urls.forEach(function (url) {
+	urls.forEach(function (url, i=1) {
 		// the download init has to be sequential for firefox if the urls are not on the same domain
 		if (isFirefox() && !sameDomain(url)) {
 			return setTimeout(download.bind(null, url), 100 * ++delay);
 		}
 
-		download(url);
+		//download(url);
+		setTimeout(download.bind(null, url), 1000 * i);
 	});
 }
